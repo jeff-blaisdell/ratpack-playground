@@ -20,7 +20,7 @@ ratpack {
                 Execution.current().add(OAuthToken, new OAuthToken(token: 'abcd')) // works
                 next()
             } else {
-                next(single(OAuthToken, new OAuthToken(token: 'abcd')))
+                next(single(OAuthToken, new OAuthToken(token: 'abcd'))) // fails cuz it's not readable from the service.
             }
         }
         all { ctx ->
