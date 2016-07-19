@@ -26,12 +26,14 @@ ratpack {
         all { ctx ->
             OAuthToken token = ctx.get(OAuthToken)
             System.out.println("Token is avaliable in next handler ${token.token}")
-            next()
+            next(single(User, new User(name: 'fred')))
         }
         get(":name") { ctx ->
 
             OAuthToken token = ctx.get(OAuthToken)
+            User usr = ctx.get(User)
             System.out.println("Token is avaliable in final handler ${token.token}")
+            System.out.println("User is avaliable in final handler ${usr.name}")
 
             UserService userService = ctx.get(UserService)
             userService.getUser()
